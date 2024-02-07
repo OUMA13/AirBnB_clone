@@ -5,15 +5,17 @@ from models.base_model import BaseModel
 
 class FileStorage:
     """this class manager storage of hbnb models in JSON"""
-    __objects = {}  # This dictionary stores all objects
+    __file_path = "file.json"
+    __objects = {}
 
-    def all(self, KL=None):
+
+    def all(self, cls=None):
         """Return a dictionary of models currently in storage __objects."""
-        if KL is not None:
+        if cls is not None:
             new_dict = {}
-            for w, o in self.__objects.items():
-                if isinstance(o, KL):
-                    new_dict[w] = o
+            for ow_k, ow_v in self.__objects.items():
+                if isinstance(ow_v, cls):
+                    new_dict[ow_k] = ow_v
             return new_dict
         return self.__objects
     
@@ -28,8 +30,8 @@ def save(self):
     """Serialize __objects into a JSON file (path: __file_path)
 To save the storage dictionary"""
     elk_objects = {}
-    for w, o in self.__objects.items():
-            elk_objects =[w] = o.to_dict()
+    for ow_k, ow_v in self.__objects.items():
+            elk_objects =[ow_k] = ow_v.to_dict()
     with open(self.__file_path, 'w') as fl:
         json.dump(elk_objects, fl)
 
@@ -37,11 +39,11 @@ def reload(self):
     """deserialize the JSON fl to __objects."""
     try:
         with open(self.__file_path, 'r') as fl:
-            ow = json.load(fl)
-            for w, o in ow.items():
-                class_name = o.get("__class__", None)
+            data = json.load(fl)
+            for ow_k, ow_v in ow_k.items():
+                class_name = ow_v.get("__class__", None)
                 if class_name:
-                    del o["__class__"]
-                    self.__objects[w] = eval(class_name)(**o)
+                    del ow_v["__class__"]
+                    self.__objects[ow_k] = eval(class_name)(**ow_v)
     except:
-        pass       
+        pass
