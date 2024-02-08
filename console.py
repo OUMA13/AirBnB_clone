@@ -2,7 +2,10 @@
 """ this Module is for definning the HBNB Console """
 import cmd
 import json
+from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
+from models.user import User
+
 
 class HBNBCommand(cmd.Cmd):
     """ 
@@ -23,33 +26,38 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
          """ Do nothing when receiving an empty line """
          pass
-def do_create(self, arg):
-    """Creates a new instance of a class"""
-    args = arg.split()
-    if len(args) == 0:
-        print("** class name missing **")
-        return
     
- 
-    try:
-        class_name = args[0]
-        new_instance = eval(class_name)()
-        new_instance.save()
-        print(new_instance.id)
-    except NameError:
-        print("** class doesn't exist **")
-
+    def do_create(self, arg):
+        """ 
+        Creates a new instance of a class BaseModel
+        and print the id
+        """
+        args = arg.split()
+        if len(args) == 0:
+            print("** class name missing **")
+            return
+    
+        try:
+            owclass_name = args[0]
+            own_instance = eval(owclass_name)()
+            own_instance.save()
+            print(own_instance.id)
+        except NameError:
+            print("** class doesn't exist **")
 
 def do_show(self, arg):
-        """Prints the string representation of an instance"""
+        """
+            Prints the string representation of an instance
+            based on id and class name givem as arguments
+        """
         args = arg.split()
         if len(args) == 0:
             print("** class name missing **")
             return
         
-        class_name = args[0]
+        owclass_name = args[0]
         try:
-            cls = eval(class_name)
+            cls = eval(owclass_name)
         except NameError:
             print("** class doesn't exist **")
             return
@@ -57,11 +65,13 @@ def do_show(self, arg):
             print("** instance id missing **")
             return
         
-        instances = cls.load_from_file()
-        instance_id = args[1]
-        key = "{}.{}".format(class_name, instance_id)
-        if key in instances:
-            print(instances[key])
+        storage = FileStorage()
+        storage.reload()
+        owobj_dict = storage.all()
+        ow_instance_id = args[1]
+        ow_key = "{}.{}".format(owclass_name, ow_instance_id)
+        if ow_key in owobj_dict:
+            print(owobj_dict[ow_key])
         else:
             print("** no instance found **")
 
@@ -72,43 +82,55 @@ def do_destroy(self, arg):
             print("** class name missing **")
             return
         
-        class_name = args[0]
+        owclass_name = args[0]
         try:
-            cls = eval(class_name)
+            cls = eval(owclass_name)
         except NameError:
             print("** class doesn't exist **")
             return
         if len(args) < 2:
             print("** instance id missing **")
             return
-        instance_id = args[1]
-        instances = cls.load_from_file()
-        key = "{}.{}".format(class_name, instance_id)
-        if key in instances:
-            del instances[key]
-            BaseModel.save_to_file(instances)
+        
+        storage = FileStorage()
+        storage.reload()
+        owobj_dict = storage.all()
+
+        ow_instance_id = args[1]
+        ow_key = "{}.{}".format(owclass_name, ow_instance_id)
+        if ow_key in owobj_dict:
+            del owobj_dict[ow_key]
+            BaseModel.save_to_file(owobj_dict)
         else:
             print("** no instance found **")
     
-def do_all(self, arg):
-        """Prints all string representation of all instances"""
-        instances = BaseModel.load_from_file()
-        args = arg.split()
-        if len(args) == 0:
-            print([str(instance) for instance in instances.values()])
-            return
+def do_all(self, args):
+    """
+    Prints all string representation of all instances
+    based or not on the class name.
+    """
+    owobj_list = []
+    storage = FileStorage()
+    storage.reload()
+    objects = storage.all()
+    
+    if args:
         try:
-            cls = eval(arg)
+            cls = eval(args)
+            owobj_list = [val for ow_k, val in objects.items() if isinstance(val, cls)]
         except NameError:
             print("** class doesn't exist **")
             return
-        #The first snippet checks if the class name in the key matches the provided arg
-        print([str(instance) for key, instance in instances.items() 
-               if key.split('.')[0] == arg])
-        
+    else:
+        owobj_list = list(objects.values())
+
+    print([str(obj) for obj in owobj_list])
 
 def do_update(self, arg):
-        """Updates an instance based on the class name and id"""
+        """
+        Updates an instance based on the class name and id
+        Usage: update <class name> <id> <attribute name> "<attribute value>"
+        """
         args = arg.split()
         if len(args) == 0:
             print("** class name missing **")
@@ -118,12 +140,16 @@ def do_update(self, arg):
         except NameError:
             print("** class doesn't exist **")
             return
+        
         if len(args) < 2:
             print("** instance id missing **")
             return
-        instances = BaseModel.load_from_file()
-        key = "{}.{}".format(args[0], args[1])
-        if key not in instances:
+        
+        ow_key = "{}.{}".format(args[0], args[1])
+        storage = FileStorage()
+        storage.reload()
+        owobj_dict = storage.all()
+        if ow_key not in owobj_dict:
             print("** no instance found **")
             return
         if len(args) < 3:
@@ -132,8 +158,8 @@ def do_update(self, arg):
         if len(args) < 4:
             print("** value missing **")
             return
-        setattr(instances[key], args[2], args[3])
-        BaseModel.save_to_file(instances)
+        setattr(owobj_dict[ow_key], args[2], args[3])
+        storage.save()
     
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
