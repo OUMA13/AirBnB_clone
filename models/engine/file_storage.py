@@ -9,14 +9,11 @@ class FileStorage:
     __objects = {}
 
 
-    def all(self, cls=None):
-        """Return a dictionary of models currently in storage __objects."""
-        if cls is not None:
-            new_dict = {}
-            for ow_k, ow_v in self.__objects.items():
-                if isinstance(ow_v, cls):
-                    new_dict[ow_k] = ow_v
-            return new_dict
+    def do_all(self, args):
+        """
+        Prints all string representation of all instances
+        based or not on the class name.
+        """
         return FileStorage.__objects
     
     def new(self, obj):

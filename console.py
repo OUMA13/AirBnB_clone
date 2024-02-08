@@ -117,7 +117,9 @@ class HBNBCommand(cmd.Cmd):
         if args:
             try:
                 cls = eval(args)
-                print([str(obj) for obj in cls.all().values()])
+                storage = FileStorage()
+                storage.reload()
+                print([str(obj) for obj in storage.all().values() if isinstance(obj, cls)])
             except NameError:
                 print("** class doesn't exist **")
                 return
@@ -125,8 +127,7 @@ class HBNBCommand(cmd.Cmd):
             storage = FileStorage()
             storage.reload()
             objects = storage.all()
-            owobj_list = list(objects.values())
-            print([str(obj) for obj in owobj_list])
+            print([str(obj) for obj in objects.values()])
 
     def do_update(self, arg):
         """
