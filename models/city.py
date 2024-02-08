@@ -1,4 +1,3 @@
-city.py
 #!/usr/bin/python3
 """Defining the City class."""
 

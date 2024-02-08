@@ -1,5 +1,5 @@
 import json
-from models.base_model import BaseModel
+import models
 from models.user import User
  
 
