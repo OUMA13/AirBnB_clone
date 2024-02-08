@@ -49,7 +49,7 @@ class HBNBCommand(cmd.Cmd):
         except NameError:
             print("** class doesn't exist **")
 
-def do_show(self, arg):
+    def do_show(self, arg):
         """
             Prints the string representation of an instance
             based on id and class name givem as arguments
@@ -79,7 +79,7 @@ def do_show(self, arg):
         else:
             print("** no instance found **")
 
-def do_destroy(self, arg):
+    def do_destroy(self, arg):
         """Deletes an instance based on the class name and id"""
         args = arg.split()
         if len(args) == 0:
@@ -108,29 +108,27 @@ def do_destroy(self, arg):
         else:
             print("** no instance found **")
     
-def do_all(self, args):
-    """
-    Prints all string representation of all instances
-    based or not on the class name.
-    """
-    owobj_list = []
-    storage = FileStorage()
-    storage.reload()
-    objects = storage.all()
-    
-    if args:
-        try:
-            cls = eval(args)
-            owobj_list = [val for ow_k, val in objects.items() if isinstance(val, cls)]
-        except NameError:
-            print("** class doesn't exist **")
-            return
-    else:
-        owobj_list = list(objects.values())
+    def do_all(self, args):
+        """
+        Prints all string representation of all instances
+        based or not on the class name.
+        """
 
-    print([str(obj) for obj in owobj_list])
+        if args:
+            try:
+                cls = eval(args)
+                print([str(obj) for obj in cls.all().values()])
+            except NameError:
+                print("** class doesn't exist **")
+                return
+        else:
+            storage = FileStorage()
+            storage.reload()
+            objects = storage.all()
+            owobj_list = list(objects.values())
+            print([str(obj) for obj in owobj_list])
 
-def do_update(self, arg):
+    def do_update(self, arg):
         """
         Updates an instance based on the class name and id
         Usage: update <class name> <id> <attribute name> "<attribute value>"
@@ -164,6 +162,7 @@ def do_update(self, arg):
             return
         setattr(owobj_dict[ow_key], args[2], args[3])
         storage.save()
+
     
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
