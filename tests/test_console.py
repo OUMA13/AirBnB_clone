@@ -2,6 +2,7 @@
 '''
     Test cases for the console file
 '''
+import models
 import sys
 import unittest
 from unittest.mock import patch
