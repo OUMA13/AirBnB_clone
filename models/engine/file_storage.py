@@ -9,7 +9,7 @@ class FileStorage:
     __objects = {}
 
 
-    def do_all(self, args):
+    def all(self):
         """
         Prints all string representation of all instances
         based or not on the class name.
@@ -41,7 +41,10 @@ class FileStorage:
                     class_name = ow_v.get("__class__", None)
                     if class_name:
                         del ow_v["__class__"]
-                        self.__objects[ow_k] = eval(class_name)(**ow_v)
+                        model_class = models.__dict__.get(class_name)
+                        if model_class:
+                            self.__objects[ow_k] = model_class(**ow_v)
+                        else:
+                            print(f"Warning: Class '{class_name}' not found.")
         except FileNotFoundError:
             pass
-    
