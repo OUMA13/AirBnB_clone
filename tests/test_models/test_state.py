@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """
-Contains the TestStateDocs classes
+define unitest for models state.py
 """
 import unittest
 from models.state import State
