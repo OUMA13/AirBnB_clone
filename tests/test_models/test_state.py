@@ -9,7 +9,7 @@ from models.engine.file_storage import FileStorage
 State = state.State
 
 class TestState(unittest.TestCase):
-    """Test the State class"""
+    """unittest for testing instantiation of the state class"""
 
     def setUp(self):
         """Set up test environment"""
