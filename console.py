@@ -11,8 +11,9 @@ from models.place import Place
 from models.amenity import Amenity
 from models.review import Review
 
+
 class HBNBCommand(cmd.Cmd):
-    """ 
+    """
     this is the Class for AirBnB clone command interpreter
     using hbnb as a prompt
     """
@@ -26,13 +27,13 @@ class HBNBCommand(cmd.Cmd):
     def do_quit(self, line):
         """ this is the quit command to exit the program """
         return True
-    
+
     def emptyline(self):
-         """ Do nothing when receiving an empty line """
-         pass
-    
+        """ Do nothing when receiving an empty line """
+        pass
+
     def do_create(self, arg):
-        """ 
+        """
         Creates a new instance of a class BaseModel
         and print the id
         """
@@ -40,7 +41,7 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 0:
             print("** class name missing **")
             return
-    
+
         try:
             owclass_name = args[0]
             own_instance = eval(owclass_name)()
@@ -58,7 +59,7 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 0:
             print("** class name missing **")
             return
-        
+
         owclass_name = args[0]
         try:
             cls = eval(owclass_name)
@@ -68,7 +69,7 @@ class HBNBCommand(cmd.Cmd):
         if len(args) < 2:
             print("** instance id missing **")
             return
-        
+
         storage = FileStorage()
         storage.reload()
         owobj_dict = storage.all()
@@ -85,7 +86,7 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 0:
             print("** class name missing **")
             return
-        
+
         owclass_name = args[0]
         try:
             cls = eval(owclass_name)
@@ -95,7 +96,7 @@ class HBNBCommand(cmd.Cmd):
         if len(args) < 2:
             print("** instance id missing **")
             return
-        
+
         storage = FileStorage()
         storage.reload()
         owobj_dict = storage.all()
@@ -107,7 +108,7 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
         else:
             print("** no instance found **")
-    
+
     def do_all(self, args):
         """
         Prints all string representation of all instances
@@ -119,7 +120,8 @@ class HBNBCommand(cmd.Cmd):
                 cls = eval(args)
                 storage = FileStorage()
                 storage.reload()
-                print([str(obj) for obj in storage.all().values() if isinstance(obj, cls)])
+                print([str(obj) for obj in storage.all().values()
+                       if isinstance(obj, cls)])
             except NameError:
                 print("** class doesn't exist **")
                 return
@@ -143,11 +145,11 @@ class HBNBCommand(cmd.Cmd):
         except NameError:
             print("** class doesn't exist **")
             return
-        
+
         if len(args) < 2:
             print("** instance id missing **")
             return
-        
+
         ow_key = "{}.{}".format(args[0], args[1])
         storage = FileStorage()
         storage.reload()
@@ -164,6 +166,6 @@ class HBNBCommand(cmd.Cmd):
         setattr(owobj_dict[ow_key], args[2], args[3])
         storage.save()
 
-    
+
 if __name__ == "__main__":
     HBNBCommand().cmdloop()

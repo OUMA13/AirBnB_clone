@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-    this Module support the BaseModel Class as the parent Class for all the Inheritate instance
+    This Module support the BaseModel Class as
+    the parent Class for all the Inheritate instance.
 """
 
 import models
@@ -13,9 +14,9 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """Inisialization of attribues of the BaseModel Class"""
-        
+
         isof = "%Y-%m-%dT%H:%M:%S.%f"
-        
+
         if (len(kwargs) == 0):
             self.id = kwargs.get('id', str(uuid.uuid4()))
             self.created_at = datetime.now()
@@ -27,15 +28,20 @@ class BaseModel:
                     setattr(self, ow_k, datetime.strptime(ow_v, isof))
                 elif ow_k != '__class__':
                     setattr(self, ow_k, ow_v)
-    
+
     def save(self):
-        """  it updates the instance is attribute updated_at with the current date time """
+        """
+        it updates the instance is attribute
+        updated_at with the current date time
+        """
         self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
-        """ returns a dictionary containing all keys and values of __dict__ 
-        of the instance in the base class including __class__ update_at and create_at"""
+        """
+        Returns a dictionary containing all keys and values of __dict__
+        of the instance in the base class including
+        __class__ update_at and create_at"""
         data = {}
         for k, v in self.__dict__.items():
             if k == 'created_at':

@@ -6,7 +6,7 @@ from models.base_model import BaseModel
 
 class Place(BaseModel):
     """
-        Definning a class that represent a Place 
+        Definning a class that represent a Place
         that inherits from BaseModel.
     """
 
