@@ -104,7 +104,7 @@ class HBNBCommand(cmd.Cmd):
         ow_key = "{}.{}".format(owclass_name, ow_instance_id)
         if ow_key in owobj_dict:
             del owobj_dict[ow_key]
-            BaseModel.save_to_file(owobj_dict)
+            storage.save()
         else:
             print("** no instance found **")
     
