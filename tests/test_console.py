@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-''' 
+'''
     Test cases for the console file
 '''
 import sys
@@ -25,6 +25,7 @@ class TestConsole(unittest.TestCase):
         """the console"""
         return HBNBCommand()
 
+
 class Test_Emptyline_Cmd(unittest.TestCase):
     """ Test emptyline command"""
     def setUp(self):
@@ -36,6 +37,7 @@ class Test_Emptyline_Cmd(unittest.TestCase):
             self.console.emptyline()
             self.assertEqual("", output.getvalue())
 
+
 class Test_Help_Cmd(unittest.TestCase):
     """Test help command"""
     def test_help_cmd(self):
@@ -44,6 +46,7 @@ class Test_Help_Cmd(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(console.onecmd("help"))
             self.assertIn("Documented commands", output.getvalue())
+
 
 class Test_Quit_Program_cmds(unittest.TestCase):
     def test_quit_cmd(self):
@@ -55,6 +58,7 @@ class Test_Quit_Program_cmds(unittest.TestCase):
         """Test EOF command"""
         console = self.create_console()
         self.assertTrue(console.onecmd("EOF"))
+
 
 class TestCreateCmd(unittest.TestCase):
     def setUp(self):
@@ -83,6 +87,7 @@ class TestCreateCmd(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as output:
             self.console.onecmd("create Wissal")
             self.assertEqual("** class doesn't exist **\n", output.getvalue())
+
 
 class TestShowCmd(unittest.TestCase):
     def setUp(self):
@@ -115,6 +120,7 @@ class TestShowCmd(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as output:
             self.console.onecmd("show User 19960429")
             self.assertEqual("** no instance found **\n", output.getvalue())
+
 
 class TestDestroyCmd(unittest.TestCase):
     def setUp(self):
@@ -183,6 +189,7 @@ class TestAllCmd(unittest.TestCase):
             self.console.onecmd("all User 1996")
             self.assertEqual("** no instance found **\n", output.getvalue())
 
+
 class TestUpdateCmd(unittest.TestCase):
     def setUp(self):
         """Test update command"""
@@ -216,7 +223,8 @@ class TestUpdateCmd(unittest.TestCase):
         """Test update command with missing attribute name"""
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(self.console.onecmd("update User 123456"))
-            self.assertEqual("** attribute name missing **\n", output.getvalue())
+            self.assertEqual("** attribute name missing **\n",
+                             output.getvalue())
 
     def test_update_cmd_missing_attribute_value(self):
         """Test update command with missing attribute value"""
@@ -233,6 +241,7 @@ class TestUpdateCmd(unittest.TestCase):
 
             self.console.onecmd(f"update User {user_id} name 'Leknouch'")
             self.assertEqual("", output.getvalue().strip())
-    
+
+
 if __name__ == '__main__':
     unittest.main()
