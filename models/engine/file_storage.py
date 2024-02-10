@@ -1,55 +1,51 @@
-#!/usr/bin/python3
-'''
-    Define class FileStorage
-'''
 import json
 import models
+from models.user import User
 
 
 class FileStorage:
-    '''
-        Serializes instances to JSON file and deserializes to JSON file.
-    '''
+    """this class manager storage of hbnb models in JSON"""
     __file_path = "file.json"
     __objects = {}
 
     def all(self):
-        '''
-            Return the dictionary
-        '''
-        return self.__objects
+        """
+        Prints all string representation of all instances
+        based or not on the class name.
+        """
+        return FileStorage.__objects
 
     def new(self, obj):
-        '''
-            Set in __objects the obj with key <obj class name>.id
-            Aguments:
-                obj : An instance object.
-        '''
-        key = str(obj.__class__.__name__) + "." + str(obj.id)
-        value_dict = obj
-        FileStorage.__objects[key] = value_dict
+        """
+        Sets the object in the __objects dictionary with the key
+        <obj_class_name>.id Adds a new object to the storage dictionary
+        """
+        if obj is not None:
+            wisso = obj.__class__.__name__
+            FileStorage.__objects["{}.{}".format(wisso, obj.id)] = obj
 
     def save(self):
-        '''
-            Serializes __objects attribute to JSON file.
-        '''
-        objects_dict = {}
-        for key, val in FileStorage.__objects.items():
-            objects_dict[key] = val.to_dict()
-
-        with open(FileStorage.__file_path, mode='w', encoding="UTF8") as fd:
-            json.dump(objects_dict, fd)
+        """Serialize __objects into a JSON file (path: __file_path)
+        To save the storage dictionary"""
+        elk_objects = {}
+        for ow_k, ow_v in self.__objects.items():
+            elk_objects[ow_k] = ow_v.to_dict()
+        with open(FileStorage.__file_path, 'w') as fl:
+            json.dump(elk_objects, fl)
 
     def reload(self):
-        '''
-            Deserializes the JSON file to __objects.
-        '''
+        """deserialize the JSON fl to __objects."""
         try:
-            with open(FileStorage.__file_path, encoding="UTF8") as fd:
-                FileStorage.__objects = json.load(fd)
-            for key, val in FileStorage.__objects.items():
-                class_name = val["__class__"]
-                class_name = models.classes[class_name]
-                FileStorage.__objects[key] = class_name(**val)
+            with open(FileStorage.__file_path, 'r') as fl:
+                data = json.load(fl)
+                for ow_k, ow_v in data.items():
+                    class_name = ow_v.get("__class__", None)
+                    if class_name:
+                        del ow_v["__class__"]
+                        model_class = models.__dict__.get(class_name)
+                        if model_class:
+                            self.__objects[ow_k] = model_class(**ow_v)
+                        else:
+                            print(f"Warning: Class '{class_name}' not found.")
         except FileNotFoundError:
             pass
