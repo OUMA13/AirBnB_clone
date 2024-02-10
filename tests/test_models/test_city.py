@@ -11,6 +11,7 @@ class City(BaseModel):
     state_id = ""
     name = ""
 
+
 ow_city = City()
 ow_city.name = "casa"
 ow_city.state_id = "MA"

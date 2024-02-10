@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-    
+""" testing the place """
 from tests.test_models.test_base_model import TestBaseModel
 from models.place import Place
 
@@ -39,7 +39,8 @@ class TestPlacedocumentation(TestBaseModel):
 
     def test_number_rooms_oattw(self):
         """To test the number_rooms attribute of your Place class,
-        you can add a method called test_number_rooms inside your TestPlace class."""
+        you can add a method called test_number_rooms
+        inside your TestPlace class."""
         nw_el = self.ow_value()
         nw_el.save()
         self.assertEqual(type(nw_el.number_rooms), int)
