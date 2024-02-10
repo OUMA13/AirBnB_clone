@@ -15,44 +15,67 @@ class TestUser_instantiation_att(unittest.TestCase):
     """Unittests for testing instantiation of the User class."""
 
     def test_no_args_instantiates_ow(self):
+       """ verify that instantiating a User object without any arg return an obt type User"""
+
         self.assertEqual(User, type(User()))
 
     def test_new_instance_stored_in_objects_ow(self):
-        self.assertIn(User(), models.storage.all().values())
+        """ Ensure that anewly instantiated User objt is stored in the objts att of the modals.storage"""
+       
+       self.assertIn(User(), models.storage.all().values())
 
     def test_id_is_public_str_ow(self):
+        """ confirme that the id attr of a User objt is a string """
+
         self.assertEqual(str, type(User().id))
 
     def test_created_at_is_public_datetime(self):
+        """validate that the created_at attr of the user objt is of type dt"""
+
         self.assertEqual(datetime, type(User().created_at))
 
     def test_updated_at_is_public_datetime(self):
+        """ensur that the uptd_at att of a user objt is of type dt"""
+
         self.assertEqual(datetime, type(User().updated_at))
 
     def test_email_is_public_str(self):
+        """ assert that the  email att of a user objt is str"""
+
         self.assertEqual(str, type(User.email))
 
     def test_password_is_public_str(self):
+        """verify that the password attr of a user objt is a str"""
+
         self.assertEqual(str, type(User.password))
 
     def test_first_name_is_public_str(self):
+        """ensur that the first_name attr of a user objt is a string"""
+
         self.assertEqual(str, type(User.first_name))
 
     def test_last_name_is_public_str(self):
+        """ confirme that the last_ name attr of a user objt is a str"""
+
         self.assertEqual(str, type(User.last_name))
 
     def test_two_users_unique_ids(self):
-        userA = User()
-        userB = User()
-        self.assertNotEqual(userA.id, userB.id)
+        """ ensure that the two different user objt have unique id att"""
+
+        user_ow = User()
+        userk = User()
+        self.assertNotEqual(user_ow.id, userk.id)
 
     def test_two_users_different_created_at(self):
-        userA = User()
+        """ validate dat two diff us objt have diff created_at """
+        us1 = User()
         sleep(0.05)
-        userB = User()
-        self.assertLess(userA.created_at, userB.created_at)
+        us2 = User()
+        self.assertLess(us1.created_at, us2.created_at)
 
     def test_two_users_different_updated_at(self):
+        """ ensure that two diff user objt have diff updtd_at"""
+
         userA = User()
         sleep(0.05)
         userB = User()
