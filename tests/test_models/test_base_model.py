@@ -27,7 +27,8 @@ class TestBaseModel_dt(unittest.TestCase):
         self.assertIsInstance(self.base, BaseModel)
 
     def test_id_generation_ID(self):
-        """"""
+        """test that the id attri of basmodel instc 
+        has been created correctly  """
         self.assertIsNotNone(self.base.id)
         self.assertIsInstance(self.base.id, str)
 
