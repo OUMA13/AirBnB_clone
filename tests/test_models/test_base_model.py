@@ -33,7 +33,9 @@ class TestBaseModel_dt(unittest.TestCase):
         self.assertIsInstance(self.base.id, str)
 
     def test_created_atT(self):
-        """"""
+        """This test verifies that the 'created_at' attribute of the 'base' instance, assumed to be set up in the test environment, 
+    is an instance of datetime.datetime. It ensures that the creation timestamp is stored correctly upon instance creation """
+
         self.assertIsInstance(self.base.created_at, datetime)
 
     def test_updated_attribute(self):
