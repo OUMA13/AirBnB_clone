@@ -19,7 +19,7 @@ class TestBaseModel_dt(unittest.TestCase):
         self.base_doc_set = BaseModel_w()
 
     def tearDown(self):
-        """"""
+        """Cleaning process after each individual test case """
         del self.base
 
     def test_instance_crt(self):
