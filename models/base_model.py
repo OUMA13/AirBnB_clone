@@ -15,19 +15,21 @@ class BaseModel:
     def __init__(self, *args, **kwargs):
         """Inisialization of attribues of the BaseModel Class"""
 
-        isof = "%Y-%m-%dT%H:%M:%S.%f"
+        self.id = kwargs.get('id', str(uuid.uuid4()))
+        self.created_at = kwargs.get('created_at', datetime.now())
+        self.updated_at = kwargs.get('updated_at', datetime.now())
 
-        if (len(kwargs) == 0):
-            self.id = kwargs.get('id', str(uuid.uuid4()))
-            self.created_at = datetime.now()
-            self.updated_at = datetime.now()
+        if 'created_at' in kwargs:
+            self.created_at = datetime.strptime(kwargs['created_at'], "%Y-%m-%dT%H:%M:%S.%f")
+        if 'updated_at' in kwargs:
+            self.updated_at = datetime.strptime(kwargs['updated_at'], "%Y-%m-%dT%H:%M:%S.%f")
+
+        if not kwargs:
             models.storage.new(self)
         else:
-            for ow_k, ow_v in kwargs.items():
-                if ow_k == 'created_at' or ow_k == 'updated_at':
-                    setattr(self, ow_k, datetime.strptime(ow_v, isof))
-                elif ow_k != '__class__':
-                    setattr(self, ow_k, ow_v)
+            for key, val in kwargs.items():
+                if key != '__class__':
+                    setattr(self, key, val)
 
     def save(self):
         """
