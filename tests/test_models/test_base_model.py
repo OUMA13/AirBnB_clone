@@ -72,19 +72,22 @@ class TestBaseModelExtended_ow(unittest.TestCase):
     """Test cases for the extended functionalities of the BaseModel class"""
 
     def test_default_constructor(self):
-        """"""
+        """ This test verifies that the default constructor of the BaseModel class creates an instance of BaseModel"""
+
         w = BaseModel()
         self.assertEqual(type(w), BaseModel)
 
     def test_kwargs_constr(self):
-        """"""
+        """This test verifies that creating a new BaseModel instance with kwargs results in a new instance,
+        not the same as the original instance. """
+
         w = BaseModel()
         past = w.to_dict()
         non = BaseModel(**past)
         self.assertFalse(non is w)
 
     def test_kwargs_integer_cnstrctr(self):
-        """"""
+        """Test handling of integer keys in kwargs for BaseModel constructo """
         w = BaseModel()
         past = w.to_dict()
         past.update({1: 2})
