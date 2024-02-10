@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-
+Define Unittests for models/amenity.py
 """
 
 from tests.test_models.test_base_model import test_basemodel
