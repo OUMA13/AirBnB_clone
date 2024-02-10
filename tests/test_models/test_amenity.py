@@ -11,7 +11,7 @@ class test_Amenity_Uni(test_basemodel):
     """Contains the TestAmenityDocs classes """
 
     def __init__(self, *args, **kwargs):
-        """preparing the test and preparing to carry out the required                        tests """
+        """preparing the test and preparing to carry out the required tests """
 
         super().__init__(*args, **kwargs)
         self.ow_n = "Amenity"
@@ -19,7 +19,9 @@ class test_Amenity_Uni(test_basemodel):
 
     def test_nameB(self):
         """
-        attribute in the instance of the Amenity model represents a string or not, thus validating the definition of this attribute in the model
+        attribute in the instance of the Amenity model
+        represents a string or not,thus validating the definition
+        of this attribute in the model
         """
         owi = self.value()
         self.assertEqual(type(owi.name), str)

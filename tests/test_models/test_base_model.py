@@ -8,9 +8,9 @@ from datetime import datetime
 BaseModel_w = models.base_model.BaseModel
 module_doc = models.base_model.__doc__
 
+
 class TestBaseModel_dt(unittest.TestCase):
     """Tests to check the documentation and style of BaseModel class"""
-    
 
     def setUp(self):
         """Set up for the test
@@ -27,20 +27,26 @@ class TestBaseModel_dt(unittest.TestCase):
         self.assertIsInstance(self.base, BaseModel)
 
     def test_id_generation_ID(self):
-        """test that the id attri of basmodel instc 
+        """test that the id attri of basmodel instc
         has been created correctly  """
         self.assertIsNotNone(self.base.id)
         self.assertIsInstance(self.base.id, str)
 
     def test_created_atT(self):
-        """This test verifies that the 'created_at' attribute of the 'base' instance, assumed to be set up in the test environment, 
-    is an instance of datetime.datetime. It ensures that the creation timestamp is stored correctly upon instance creation """
+        """This test verifies that the 'created_at' attribute of the
+        'base' instance, assumed to be set up in the test environment,
+        is an instance of datetime.datetime. It ensures that the creation
+        timestamp is stored correctly upon instance creation """
 
         self.assertIsInstance(self.base.created_at, datetime)
 
     def test_updated_attribute(self):
-        """This test verifies that the 'updated_at' attribute of the 'base' instance, assumed to be set up in the test environment,
-    is an instance of datetime.datetime. It ensures that the update timestamp is stored correctly upon instance creation """
+        """
+            This test verifies that the 'updated_at' attribute of
+            the 'base' instance, assumed to be set up in the test environment,
+            is an instance of datetime.datetime. It ensures that the update
+            timestamp is stored correctly upon instance creation
+            """
 
         self.assertIsInstance(self.base.updated_at, datetime)
 
@@ -62,23 +68,27 @@ class TestBaseModel_dt(unittest.TestCase):
 
     def test_delete_upt(self):
         """Test the deletion of BaseModel instances from storage """
-       
+
         models.storage.new(self.base)
         models.storage.save()
         models.storage.delete(self.base)
         self.assertNotIn(self.base, models.storage.all().values())
 
+
 class TestBaseModelExtended_ow(unittest.TestCase):
     """Test cases for the extended functionalities of the BaseModel class"""
 
     def test_default_constructor(self):
-        """ This test verifies that the default constructor of the BaseModel class creates an instance of BaseModel"""
+        """ This test verifies that the default constructor
+            of the BaseModel class creates an instance of BaseModel
+        """
 
         w = BaseModel()
         self.assertEqual(type(w), BaseModel)
 
     def test_kwargs_constr(self):
-        """This test verifies that creating a new BaseModel instance with kwargs results in a new instance,
+        """This test verifies that creating a new BaseModel
+        instance with kwargs results in a new instance,
         not the same as the original instance. """
 
         w = BaseModel()
@@ -109,7 +119,6 @@ class TestBaseModelExtended_ow(unittest.TestCase):
         out_ow = "[BaseModel] ({}) {}".format(new.id, new.__dict__)
         self.assertEqual(out_ow, str(new))
 
-
     def test_to_dict(self):
         """Test conversion of object attributes to dictionary for json"""
         w = BaseModel()
@@ -117,8 +126,9 @@ class TestBaseModelExtended_ow(unittest.TestCase):
         self.assertEqual(w.to_dict(), o)
 
     def test_kwargs_none(self):
-        """This test verifies that attempting to create a BaseModel instance with key or value as None in the kwargs dictionary 
-    raises a TypeError as expected """
+        """This test verifies that attempting to create a BaseModel instance
+        with key or value as None in the kwargs dictionary
+        raises a TypeError as expected """
         ow = {None: None}
         with self.assertRaises(TypeError):
             new = BaseModel(**ow)
@@ -135,13 +145,13 @@ class TestBaseModelExtended_ow(unittest.TestCase):
         self.assertEqual(type(new.id), str)
 
     def test_created_at_type(self):
-        """ this  test ensure that when a new inst of basmodel 
+        """ this  test ensure that when a new inst of basmodel
         is created, the created_at attri  """
         non = BaseModel()
         self.assertEqual(type(non.created_at), datetime.datetime)
 
     def test_updated_at(self):
-        """ test the behavior of the updated_at attri in the Basemodel class  """
+        """test the behavior of the updated_at attri in the Basemodel class"""
         new = BaseModel()
         self.assertEqual(type(new.updated_at), datetime.datetime)
 
@@ -152,6 +162,7 @@ class TestBaseModelExtended_ow(unittest.TestCase):
         w = new.to_dict()
         non = BaseModel(**w)
         self.assertFalse(new.created_at == new.updated_at)
+
 
 if __name__ == '__main__':
     unittest.main()
