@@ -6,7 +6,8 @@ define unitest for models state.py
 import unittest
 from models.state import State
 from models.engine.file_storage import FileStorage
-State = state.State
+from models.base_model import BaseModel
+
 
 class TestState(unittest.TestCase):
     """unittest for testing instantiation of the state class"""

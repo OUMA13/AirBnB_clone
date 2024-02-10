@@ -2,6 +2,7 @@
 
 """Test BasModel for exepted behavior and documentation"""
 import unittest
+import json
 from models.base_model import BaseModel
 import models
 from datetime import datetime
