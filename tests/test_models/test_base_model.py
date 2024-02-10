@@ -124,7 +124,8 @@ class TestBaseModelExtended_ow(unittest.TestCase):
         self.assertEqual(type(new.id), str)
 
     def test_created_at_type(self):
-        """"""
+        """ this  test ensure that when a new inst of basmodel 
+        is created, the created_at attri  """
         non = BaseModel()
         self.assertEqual(type(non.created_at), datetime.datetime)
 
