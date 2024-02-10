@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+""" Manages the storage of HBNB models in a JSON file"""
+
 import json
 import models
 from models.user import User
