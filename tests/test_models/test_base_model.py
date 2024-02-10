@@ -85,7 +85,7 @@ class TestBaseModelExtended_ow(unittest.TestCase):
             new = BaseModel(**past)
 
     def test_save_json(self):
-        """"""
+        """updates the public instance attribute updated_at """
         w = BaseModel()
         w.save()
         ow_k = 'BaseModel.' + w.id
@@ -114,9 +114,9 @@ class TestBaseModelExtended_ow(unittest.TestCase):
 
     def test_kwargs_one(self):
         """Test constructor with one kwargs"""
-        n = {'Name': 'test'}
+        ow = {'Name': 'test'}
         with self.assertRaises(KeyError):
-            new = BaseModel(**n)
+            new = BaseModel(**ow)
 
     def test_id(self):
         """Test ID type"""
@@ -129,7 +129,7 @@ class TestBaseModelExtended_ow(unittest.TestCase):
         self.assertEqual(type(non.created_at), datetime.datetime)
 
     def test_updated_at(self):
-        """"""
+        """the test updated  """
         new = BaseModel()
         self.assertEqual(type(new.updated_at), datetime.datetime)
 
