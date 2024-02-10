@@ -130,7 +130,7 @@ class TestBaseModelExtended_ow(unittest.TestCase):
         self.assertEqual(type(non.created_at), datetime.datetime)
 
     def test_updated_at(self):
-        """the test updated  """
+        """ test the behavior of the updated_at attri in the Basemodel class  """
         new = BaseModel()
         self.assertEqual(type(new.updated_at), datetime.datetime)
 
