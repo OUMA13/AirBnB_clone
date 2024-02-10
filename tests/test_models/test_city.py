@@ -3,6 +3,7 @@
 
 from models.base_model import BaseModel
 import json
+import BaseModel
 
 class City(BaseModel):
     """ Contains the TestCityDocs classes"""
