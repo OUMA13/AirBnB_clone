@@ -4,7 +4,7 @@ Define Unittests for models/amenity.py
 """
 
 from tests.test_models.test_base_model import test_basemodel
-from models.amenity import Amenity
+from models.amenity import test_amenity
 
 
 class test_Amenity_Uni(test_basemodel):
