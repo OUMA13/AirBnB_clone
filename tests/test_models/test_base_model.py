@@ -114,7 +114,8 @@ class TestBaseModelExtended_ow(unittest.TestCase):
         self.assertEqual(w.to_dict(), o)
 
     def test_kwargs_none(self):
-        """"""
+        """This test verifies that attempting to create a BaseModel instance with key or value as None in the kwargs dictionary 
+    raises a TypeError as expected """
         ow = {None: None}
         with self.assertRaises(TypeError):
             new = BaseModel(**ow)
