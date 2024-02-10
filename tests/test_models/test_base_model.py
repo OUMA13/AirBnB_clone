@@ -52,7 +52,7 @@ class TestBaseModel_dt(unittest.TestCase):
         self.assertNotEqual(up_updated_attribute, self.base.updated_at)
 
     def test_to_dict_instance(self):
-        """"""
+        """Test the to_dict meth of BaseModel instnc """
         dict_ow = self.base.to_dict()
         self.assertIsInstance(dict_ow, dict)
         self.assertIn('__class__', dict_ow)
@@ -61,7 +61,7 @@ class TestBaseModel_dt(unittest.TestCase):
         self.assertIn('updated_at', dict_ow)
 
     def test_delete_upt(self):
-        """"""
+        """Test the deletion of BaseModel instances from storage """
        
         models.storage.new(self.base)
         models.storage.save()
