@@ -23,7 +23,7 @@ class TestBaseModel_dt(unittest.TestCase):
         del self.base
 
     def test_instance_crt(self):
-        """"""
+        """test that the base attri is an instnce of a BaseModel """
         self.assertIsInstance(self.base, BaseModel)
 
     def test_id_generation_ID(self):
