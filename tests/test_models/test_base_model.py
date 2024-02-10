@@ -119,7 +119,7 @@ class TestBaseModelExtended_ow(unittest.TestCase):
             new = BaseModel(**ow)
 
     def test_id(self):
-        """Test ID type"""
+        """ test that the id attr of type str """
         new = BaseModel()
         self.assertEqual(type(new.id), str)
 
