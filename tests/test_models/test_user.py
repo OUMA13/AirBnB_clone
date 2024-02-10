@@ -76,12 +76,14 @@ class TestUser_instantiation_att(unittest.TestCase):
     def test_two_users_different_updated_at(self):
         """ ensure that two diff user objt have diff updtd_at"""
 
-        userA = User()
+        user1 = User()
         sleep(0.05)
-        userB = User()
-        self.assertLess(userA.updated_at, userB.updated_at)
+        user2 = User()
+        self.assertLess(user1.updated_at, user2.updated_at)
 
     def test_str_representation(self):
+        """ test the string representation of a user objt"""
+
         dt_ow = datetime.today()
         dt_ow_repr = repr(dt_ow)
         us_w = User()
@@ -94,10 +96,13 @@ class TestUser_instantiation_att(unittest.TestCase):
         self.assertIn("'updated_at': " + dt_ow_repr, us_str)
 
     def test_args_unused(self):
+        """ verify that pass non as an arg to the user cntrctr doesen't affect the object"""
         us_w = User(None)
         self.assertNotIn(None, us_w.__dict__.values())
 
     def test_instantiation_with_kwargs(self):
+        """test instantiation of a user objt with keyword arg"""
+
         dt_ow = datetime.today()
         dt_iso = dt_ow.isoformat()
         us_w = User(id="345", created_at=dt_iso, updated_at=dt_iso)
@@ -106,6 +111,7 @@ class TestUser_instantiation_att(unittest.TestCase):
         self.assertEqual(us_w.updated_at, dt_ow)
 
     def test_instantiation_with_None_kwargs(self):
+        """ensur that passing none as a keyword arg raises a typError"""
         with self.assertRaises(TypeError):
             User(id=None, created_at=None, updated_at=None)
 
@@ -114,12 +120,14 @@ class TestUser_save_att(unittest.TestCase):
     """Unittests for testing save method of the  class."""
 
     def setUp(self):
+       """ prepar the envr beforr eachh test case by renaming the exesting file.json to tmp"""
         try:
             os.rename("file.json", "tmp")
         except IOError:
             pass
 
     def tearDown(self):
+        """ Clean up the environment after each test case by removing the "file.json" and renaming "tmp" back to "file.json" (if "tmp" exists)"""
         try:
             os.remove("file.json")
         except IOError:
@@ -129,14 +137,16 @@ class TestUser_save_att(unittest.TestCase):
         except IOError:
             pass
 
-    def test_one_save(self):
+    def test_A__save(self):
+""" verify that calling the save meth upt the updated_at att of a user objt"""
         us_w = User()
         sleep(0.05)
         first_updated_at = us_w.updated_at
         us_w.save()
         self.assertLess(first_updated_at, us_w.updated_at)
 
-    def test_two_saves(self):
+    def test_B__saves(self):
+        """Ensure that successive calls to the save meth upt the updated_at att  of a User objt"""
         us_w = User()
         sleep(0.05)
         first_updated_at = us_w.updated_at
@@ -148,11 +158,15 @@ class TestUser_save_att(unittest.TestCase):
         self.assertLess(second_updated_at, us_w.updated_at)
 
     def test_save_with_arg(self):
+        """validat that passing an arg to the save meth 
+        raises a TypError"""
         us_w = User()
         with self.assertRaises(TypeError):
             us_w.save(None)
 
     def test_save_updates_file(self):
+        """ nsure that calling the save method updt 
+        the "file.json" with the new User obj"""
         us_w = User()
         us_w.save()
         usda = "User." + us_w.id
