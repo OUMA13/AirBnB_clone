@@ -13,7 +13,9 @@ class TestBaseModel_dt(unittest.TestCase):
     
 
     def setUp(self):
-        """Set up for the test"""
+        """Set up for the test
+        Test the behavior of the 'updated_at' attribute in the BaseModel class
+        """
         self.base_doc_set = BaseModel_w()
 
     def tearDown(self):
