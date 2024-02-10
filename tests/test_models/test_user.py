@@ -178,9 +178,12 @@ class TestUser_to_dict(unittest.TestCase):
     """Unittests for testing to_dict method of the User class."""
 
     def test_to_dict_type(self):
+        """valid that the to_dict meth return a dict"""
         self.assertTrue(dict, type(User().to_dict()))
 
     def test_to_dict_contains_correct_keys(self):
+        """ ensure that the dic returned by to_dict
+        contains the corr keys"""
         us_w = User()
         self.assertIn("id", us_w.to_dict())
         self.assertIn("created_at", us_w.to_dict())
@@ -188,6 +191,9 @@ class TestUser_to_dict(unittest.TestCase):
         self.assertIn("__class__", us_w.to_dict())
 
     def test_to_dict_contains_added_attributes(self):
+        """verif that addi attr added to a user objt are included in 
+        the dict returned by to_dict"""
+        
         us_w = User()
         us_w.middle_name = "Holberton"
         us_w.my_number = 98
@@ -195,6 +201,8 @@ class TestUser_to_dict(unittest.TestCase):
         self.assertIn("my_number", us_w.to_dict())
 
     def test_to_dict_datetime_attributes_are_strs(self):
+        """ ensur that the dt attri in the dict returned by to_dict 
+        are coverted to string"""
         us_w = User()
         user_dict = us_w.to_dict()
         self.assertEqual(str, type(user_dict["id"]))
@@ -202,6 +210,8 @@ class TestUser_to_dict(unittest.TestCase):
         self.assertEqual(str, type(user_dict["updated_at"]))
 
     def test_to_dict_output(self):
+        """test the out of the to_dict leth against the 
+        expected dict reprt"""
         dati = datetime.today()
         us_w = User()
         us_w.id = "123456"
@@ -215,10 +225,14 @@ class TestUser_to_dict(unittest.TestCase):
         self.assertDictEqual(us_w.to_dict(), tdict_att)
 
     def test_contrast_to_dict_dunder_dict(self):
+        """ verify that the dict returned by to_dict in sot equal to 
+        the __dict__ attr of the user objt"""
         us_w = User()
         self.assertNotEqual(us_w.to_dict(), us_w.__dict__)
 
     def test_to_dict_with_arg(self):
+        """ validate that passing an arg to 
+        the to_dict meth raise a TypeError"""
         us_w = User()
         with self.assertRaises(TypeError):
             us_w.to_dict(None)
