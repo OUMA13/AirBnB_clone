@@ -15,11 +15,15 @@ class TestUser_instantiation_att(unittest.TestCase):
     """Unittests for testing instantiation of the User class."""
 
     def test_no_args_instantiates_ow(self):
-        """ verify that instantiating a User object without any arg return an obt type User"""
+        """ verify that instantiating a User object without
+            any arg return an obt type User
+        """
         self.assertEqual(User, type(User()))
 
     def test_new_instance_stored_in_objects_ow(self):
-        """ Ensure that anewly instantiated User objt is stored in the objts att of the modals.storage"""
+        """ Ensure that anewly instantiated User objt is stored
+            in the objts att of the modals.storage
+        """
         self.assertIn(User(), models.storage.all().values())
 
     def test_id_is_public_str_ow(self):
@@ -94,7 +98,9 @@ class TestUser_instantiation_att(unittest.TestCase):
         self.assertIn("'updated_at': " + dt_ow_repr, us_str)
 
     def test_args_unused(self):
-        """ verify that pass non as an arg to the user cntrctr doesen't affect the object"""
+        """ verify that pass non as an arg to the user
+            cntrctr doesen't affect the object
+            """
         us_w = User(None)
         self.assertNotIn(None, us_w.__dict__.values())
 
@@ -118,14 +124,19 @@ class TestUser_save_att(unittest.TestCase):
     """Unittests for testing save method of the  class."""
 
     def setUp(self):
-        """ prepar the envr beforr eachh test case by renaming the exesting file.json to tmp"""
+        """ prepar the envr beforr eachh test case by renaming
+            the exesting file.json to tmp
+        """
         try:
             os.rename("file.json", "tmp")
         except IOError:
             pass
 
     def tearDown(self):
-        """ Clean up the environment after each test case by removing the "file.json" and renaming "tmp" back to "file.json" (if "tmp" exists)"""
+        """ Clean up the environment after each test case by removing
+            the "file.json" and renaming "tmp" back to "file.json"
+            (if "tmp" exists)
+        """
         try:
             os.remove("file.json")
         except IOError:
@@ -136,7 +147,8 @@ class TestUser_save_att(unittest.TestCase):
             pass
 
     def test_A__save(self):
-        """ verify that calling the save meth upt the updated_at att of a user objt"""
+        """ verify that calling the save meth upt the
+        updated_at att of a user objt"""
         us_w = User()
         sleep(0.05)
         first_updated_at = us_w.updated_at
@@ -144,7 +156,8 @@ class TestUser_save_att(unittest.TestCase):
         self.assertLess(first_updated_at, us_w.updated_at)
 
     def test_B__saves(self):
-        """Ensure that successive calls to the save meth upt the updated_at att  of a User objt"""
+        """Ensure that successive calls to the save meth upt
+        the updated_at att  of a User objt"""
         us_w = User()
         sleep(0.05)
         first_updated_at = us_w.updated_at
@@ -156,14 +169,14 @@ class TestUser_save_att(unittest.TestCase):
         self.assertLess(second_updated_at, us_w.updated_at)
 
     def test_save_with_arg(self):
-        """validat that passing an arg to the save meth 
+        """validat that passing an arg to the save meth
         raises a TypError"""
         us_w = User()
         with self.assertRaises(TypeError):
             us_w.save(None)
 
     def test_save_updates_file(self):
-        """ nsure that calling the save method updt 
+        """ nsure that calling the save method updt
         the "file.json" with the new User obj"""
         us_w = User()
         us_w.save()
@@ -189,9 +202,9 @@ class TestUser_to_dict(unittest.TestCase):
         self.assertIn("__class__", us_w.to_dict())
 
     def test_to_dict_contains_added_attributes(self):
-        """verif that addi attr added to a user objt are included in 
+        """verif that addi attr added to a user objt are included in
         the dict returned by to_dict"""
-        
+
         us_w = User()
         us_w.middle_name = "Holberton"
         us_w.my_number = 98
@@ -199,7 +212,7 @@ class TestUser_to_dict(unittest.TestCase):
         self.assertIn("my_number", us_w.to_dict())
 
     def test_to_dict_datetime_attributes_are_strs(self):
-        """ ensur that the dt attri in the dict returned by to_dict 
+        """ ensur that the dt attri in the dict returned by to_dict
         are coverted to string"""
         us_w = User()
         user_dict = us_w.to_dict()
@@ -208,7 +221,7 @@ class TestUser_to_dict(unittest.TestCase):
         self.assertEqual(str, type(user_dict["updated_at"]))
 
     def test_to_dict_output(self):
-        """test the out of the to_dict leth against the 
+        """test the out of the to_dict leth against the
         expected dict reprt"""
         dati = datetime.today()
         us_w = User()
@@ -223,14 +236,18 @@ class TestUser_to_dict(unittest.TestCase):
         self.assertDictEqual(us_w.to_dict(), tdict_att)
 
     def test_contrast_to_dict_dunder_dict(self):
-        """ verify that the dict returned by to_dict in sot equal to 
-        the __dict__ attr of the user objt"""
+        """
+        verify that the dict returned by to_dict in sot equal to
+        the __dict__ attr of the user objt
+        """
         us_w = User()
         self.assertNotEqual(us_w.to_dict(), us_w.__dict__)
 
     def test_to_dict_with_arg(self):
-        """ validate that passing an arg to 
-        the to_dict meth raise a TypeError"""
+        """
+        validate that passing an arg to
+        the to_dict meth raise a TypeError
+        """
         us_w = User()
         with self.assertRaises(TypeError):
             us_w.to_dict(None)

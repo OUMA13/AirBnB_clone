@@ -30,7 +30,7 @@ class TestState(unittest.TestCase):
     def test_state_inheritance_ow(self):
         """Unittests for testing save method of the State class"""
         self.assertTrue(issubclass(State, BaseModel))
-    
+
     def test_default_name_ow(self):
         """test if the name attribute ia ans empty string"""
         self.assertEqual(self.stt.name, "")
@@ -55,7 +55,6 @@ class TestState(unittest.TestCase):
         self.assertIn("created_at", stt_dict)
         self.assertIn("updated_at", stt_dict)
         self.assertIn("name", stt_dict)
-
 
 
 if __name__ == "__main__":

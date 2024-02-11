@@ -8,7 +8,6 @@ from datetime import datetime
 import models
 
 
-
 class TestBaseModel_dt(unittest.TestCase):
     """Tests to check the documentation and style of BaseModel class"""
 
@@ -65,6 +64,7 @@ class TestBaseModel_dt(unittest.TestCase):
         self.assertIn('id', dict_ow)
         self.assertIn('created_at', dict_ow)
         self.assertIn('updated_at', dict_ow)
+
 
 class TestBaseModelExtended_ow(unittest.TestCase):
     """Test cases for the extended functionalities of the BaseModel class"""
