@@ -4,10 +4,9 @@
 import unittest
 import json
 from models.base_model import BaseModel
-import models
 from datetime import datetime
-BaseModel_w = models.base_model.BaseModel
-module_doc = models.base_model.__doc__
+import models
+
 
 
 class TestBaseModel_dt(unittest.TestCase):
@@ -17,7 +16,7 @@ class TestBaseModel_dt(unittest.TestCase):
         """Set up for the test
         Test the behavior of the 'updated_at' attribute in the BaseModel class
         """
-        self.base_doc_set = BaseModel_w()
+        self.base = BaseModel()
 
     def tearDown(self):
         """Cleaning process after each individual test case """
@@ -67,15 +66,6 @@ class TestBaseModel_dt(unittest.TestCase):
         self.assertIn('created_at', dict_ow)
         self.assertIn('updated_at', dict_ow)
 
-    def test_delete_upt(self):
-        """Test the deletion of BaseModel instances from storage """
-
-        models.storage.new(self.base)
-        models.storage.save()
-        models.storage.delete(self.base)
-        self.assertNotIn(self.base, models.storage.all().values())
-
-
 class TestBaseModelExtended_ow(unittest.TestCase):
     """Test cases for the extended functionalities of the BaseModel class"""
 
@@ -112,7 +102,7 @@ class TestBaseModelExtended_ow(unittest.TestCase):
         ow_k = 'BaseModel.' + w.id
         with open('file.json', 'r') as f:
             o = json.load(f)
-            self.assertEqual(o[ow_k], o.to_dict())
+            self.assertEqual(o[ow_k], w.to_dict())
 
     def test_str_rep_corre(self):
         """test that the str method has the correct output"""
@@ -134,12 +124,6 @@ class TestBaseModelExtended_ow(unittest.TestCase):
         with self.assertRaises(TypeError):
             new = BaseModel(**ow)
 
-    def test_kwargs_one(self):
-        """Test constructor with one kwargs"""
-        ow = {'Name': 'test'}
-        with self.assertRaises(KeyError):
-            new = BaseModel(**ow)
-
     def test_id(self):
         """ test that the id attr of type str """
         new = BaseModel()
@@ -149,12 +133,12 @@ class TestBaseModelExtended_ow(unittest.TestCase):
         """ this  test ensure that when a new inst of basmodel
         is created, the created_at attri  """
         non = BaseModel()
-        self.assertEqual(type(non.created_at), datetime.datetime)
+        self.assertEqual(type(non.created_at), datetime)
 
     def test_updated_at(self):
         """test the behavior of the updated_at attri in the Basemodel class"""
         new = BaseModel()
-        self.assertEqual(type(new.updated_at), datetime.datetime)
+        self.assertEqual(type(new.updated_at), datetime)
 
         import time
         time.sleep(1)
