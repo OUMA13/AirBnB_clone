@@ -61,12 +61,12 @@ class TestFileStorage_file_with_me(unittest.TestCase):
         with self.assertRaises(TypeError):
             self.storage.new(BaseModel(), 1)
 
-    def test_new_method(self):
-        """ Test the new method """
-        obj = BaseModel()
-        self.storage.new(obj)
-        key = "{}.{}".format(obj.__class__.__name__, obj.id)
-        self.assertTrue(key in self.storage._FileStorage__objects)
+    def test_new_adds_instance_obj_to_dict_of_objects(self):
+        """tests wether the instance method 'new' adds new object"""
+        temp_obj = BaseModel()
+        self.storage.new(temp_obj)
+        key = f"{temp_obj.__class__.__name__}.{temp_obj.id}"
+        self.assertIn(key, self.storage.all().keys())
 
     def test_save_create_file_exists(self):
         """tests if the file was created with the same name"""
