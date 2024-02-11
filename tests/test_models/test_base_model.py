@@ -78,25 +78,25 @@ class TestBaseModelExtended_ow(unittest.TestCase):
         self.assertEqual(type(w), BaseModel)
 
     def test_kwargs_constr(self):
-        """This test verifies that creating a new BaseModel
-        instance with kwargs results in a new instance,
-        not the same as the original instance. """
+        """ test verifies that creating a new BaseModel
+        istnc  with kwargs results in a new istnc,
+        not the same as the original istnc """
 
         w = BaseModel()
         past = w.to_dict()
-        non = BaseModel(**past)
-        self.assertFalse(non is w)
+        o = BaseModel(**past)
+        self.assertFalse(o is w)
 
     def test_kwargs_integer_cnstrctr(self):
-        """Test handling of integer keys in kwargs for BaseModel constructo """
+        """Test handling of integer keys in kwargs for BaseModel costrct """
         w = BaseModel()
-        past = w.to_dict()
+        paste = w.to_dict()
         past.update({1: 2})
         with self.assertRaises(TypeError):
-            new = BaseModel(**past)
+            new = BaseModel(**paste)
 
     def test_save_json(self):
-        """updates the public instance attribute updated_at """
+        """updates the public instance att updated_at """
         w = BaseModel()
         w.save()
         ow_k = 'BaseModel.' + w.id
