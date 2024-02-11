@@ -11,12 +11,16 @@ import unittest
 class test_City_Uni(unittest.TestCase):
     """Contains the TestCity test cases/unit tests classes """
 
-    def __init__(self, *args, **kwargs):
-        """Preparing the test inisialization """
-
-        super().__init__(*args, **kwargs)
+    def setUp(self):
+        """Set up for the test"""
         self.ow_n = "City"
         self.ow_v = City
+
+    def value(self):
+        """
+        Helper method that return City class
+        """
+        return self.ow_v()
 
     def test_state_id_isan_instance(self):
         """
@@ -34,7 +38,7 @@ class test_City_Uni(unittest.TestCase):
         city_instance = self.value()
         self.assertEqual(type(city_instance.name), str)
 
-    def test_name_initial_value(self):
+    def test_name_initial_empty_string(self):
         """
         test if state id attribute in an instance of the City
         is initially an empty string
@@ -42,10 +46,18 @@ class test_City_Uni(unittest.TestCase):
         city_instance = self.value()
         self.assertEqual(city_instance.name, "")
 
-    def test_state_id_initial_value(self):
+    def test_state_id_initial_empty_string(self):
         """
         test if state id attribute in an instance of the City
         is initially an empty string
         """
         city_instance = self.value()
         self.assertEqual(city_instance.state_id, "")
+
+    def test_city_attributes_state_id_name(self):
+        """
+        test if the city instance has the attribute state id and name
+        """
+        city_instance = self.value()
+        self.assertTrue(hasattr(city_instance, 'state_id'))
+        self.assertTrue(hasattr(city_instance, 'name'))
