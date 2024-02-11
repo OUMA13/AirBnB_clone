@@ -93,7 +93,7 @@ class TestUser_instantiation_att(unittest.TestCase):
         us_w.created_at = us_w.updated_at = dt_ow
         us_str = us_w.__str__()
         self.assertIn("[User] (19902)", us_str)
-        self.assertIn("'id': '123456'", us_str)
+        self.assertIn("'id': '19902'", us_str)
         self.assertIn("'created_at': " + dt_ow_repr, us_str)
         self.assertIn("'updated_at': " + dt_ow_repr, us_str)
 
