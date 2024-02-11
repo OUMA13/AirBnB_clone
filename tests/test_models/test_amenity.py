@@ -6,6 +6,7 @@ Define Unittests for models/amenity.py
 import unittest
 from models.amenity import Amenity
 from models.base_model import BaseModel
+from datetime import datetime
 
 
 class Test_Amenity_with_me(unittest.TestCase):
@@ -38,12 +39,16 @@ class Test_Amenity_with_me(unittest.TestCase):
         amenity_instance = self.ow_v()
         self.assertEqual(amenity_instance.name, '')
 
+    def test_created_at_datetime_attribute(self):
+        """ test the crreate at attribute of amenity"""
+        self.assertEqual(datetime, type(self.ow_v().created_at))
+
     def test_to_dict_method(self):
         """Test the to_dict method if it works fine"""
-        amenity_instance = self.ow_v()
-        amenity_dict = amenity_instance.to_dict()
-        self.assertIsInstance(amenity_dict, dict)
-        self.assertEqual(amenity_dict['__class__'], 'Amenity')
+        ow_amenity_inst = self.ow_v()
+        ow_amenity_dict = ow_amenity_inst.to_dict()
+        self.assertIsInstance(ow_amenity_dict, dict)
+        self.assertEqual(ow_amenity_dict['__class__'], 'Amenity')
 
     def test_without__arguments_inis(self):
         """ test without arguments initialize"""

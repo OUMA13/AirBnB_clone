@@ -19,23 +19,29 @@ from models.review import Review
 class TestReviewInstantiation(unittest.TestCase):
     """Unittests for testing instantiation of the Review class."""
 
-    def test_no_args_instantiates(self):
+    def test_review_with_no_args_(self):
         """Test if Review instance is created with no arguments."""
         self.assertEqual(Review, type(Review()))
 
-    def test_id_is_public_str(self):
+    def test_if_id_is_public_string(self):
         """test if the id is a pubklic string"""
         self.assertEqual(str, type(Review().id))
 
-    def test_created_at_is_public_datetime(self):
+    def test_two_id_reviews(self):
+        """ test if two reviews have different ids"""
+        ow_rev1 = Review()
+        ow_rev2 = Review()
+        self.assertNotEqual(ow_rev1.id, ow_rev2.id)
+
+    def test_created_at_datetime(self):
         """ test created at is a public datetime"""
         self.assertEqual(datetime, type(Review().created_at))
 
-    def test_updated_at_is_public_datetime(self):
+    def test_updated_at_datetime(self):
         """test updated at is a public datetime"""
         self.assertEqual(datetime, type(Review().updated_at))
 
-    def test_place_id_is_public_class_attribute(self):
+    def test_place_id_work(self):
         """test place id if it is a public class attribute"""
         rev_ow = Review()
         self.assertEqual(str, type(rev_ow.place_id))

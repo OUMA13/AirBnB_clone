@@ -38,6 +38,10 @@ class test_City_Uni(unittest.TestCase):
         city_instance = self.value()
         self.assertEqual(type(city_instance.name), str)
 
+    def test_city_with_no_args(self):
+        """ test City wthout arguments"""
+        self.assertEqual(City, type(City()))
+
     def test_name_initial_empty_string(self):
         """
         test if state id attribute in an instance of the City
