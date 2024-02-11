@@ -1,10 +1,11 @@
 #!/usr/bin/python3
 """ testing the place """
-from tests.test_models.test_base_model import TestBaseModel
+from models.base_model import BaseModel
 from models.place import Place
+import unittest
 
 
-class TestPlacedocumentation(TestBaseModel):
+class TestPlacedocumentation(unittest.TestCase):
     """Tests to check the documentation and style of Place class"""
 
     def __init__(self, *args, **kwargs):
