@@ -65,3 +65,7 @@ class test_City_Uni(unittest.TestCase):
         city_instance = self.value()
         self.assertTrue(hasattr(city_instance, 'state_id'))
         self.assertTrue(hasattr(city_instance, 'name'))
+
+
+if __name__ == '__main__':
+    unittest.main()

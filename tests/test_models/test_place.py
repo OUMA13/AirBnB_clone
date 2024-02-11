@@ -81,3 +81,7 @@ class TestPlacedocumentation(unittest.TestCase):
         nw_el = self.ow_value()
         nw_el.save()
         self.assertEqual(type(nw_el.amenity_ids), list)
+
+
+if __name__ == '__main__':
+    unittest.main()
