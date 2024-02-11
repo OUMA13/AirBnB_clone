@@ -15,14 +15,12 @@ class TestUser_instantiation_att(unittest.TestCase):
     """Unittests for testing instantiation of the User class."""
 
     def test_no_args_instantiates_ow(self):
-       """ verify that instantiating a User object without any arg return an obt type User"""
-
+        """ verify that instantiating a User object without any arg return an obt type User"""
         self.assertEqual(User, type(User()))
 
     def test_new_instance_stored_in_objects_ow(self):
         """ Ensure that anewly instantiated User objt is stored in the objts att of the modals.storage"""
-       
-       self.assertIn(User(), models.storage.all().values())
+        self.assertIn(User(), models.storage.all().values())
 
     def test_id_is_public_str_ow(self):
         """ confirme that the id attr of a User objt is a string """
@@ -120,7 +118,7 @@ class TestUser_save_att(unittest.TestCase):
     """Unittests for testing save method of the  class."""
 
     def setUp(self):
-       """ prepar the envr beforr eachh test case by renaming the exesting file.json to tmp"""
+        """ prepar the envr beforr eachh test case by renaming the exesting file.json to tmp"""
         try:
             os.rename("file.json", "tmp")
         except IOError:
@@ -138,7 +136,7 @@ class TestUser_save_att(unittest.TestCase):
             pass
 
     def test_A__save(self):
-""" verify that calling the save meth upt the updated_at att of a user objt"""
+        """ verify that calling the save meth upt the updated_at att of a user objt"""
         us_w = User()
         sleep(0.05)
         first_updated_at = us_w.updated_at

@@ -3,25 +3,44 @@
 Define Unittests for models/amenity.py
 """
 
-from tests.test_models.test_base_model import test_basemodel
+import unittest
 from models.amenity import Amenity
+from models.base_model import BaseModel
 
 
-class test_Amenity_Uni(test_basemodel):
-    """Contains the TestAmenityDocs classes """
+class Test_Amenity_with_me(unittest.TestCase):
+    """Contains the Test cases of Amenity class"""
 
-    def __init__(self, *args, **kwargs):
-        """preparing the test and preparing to carry out the required tests """
-
-        super().__init__(*args, **kwargs)
+    def setUp(self):
+        """Set up for the test"""
         self.ow_n = "Amenity"
         self.ow_v = Amenity
 
-    def test_nameB(self):
+    def test_name_attri_initialization(self):
         """
-        attribute in the instance of the Amenity model
-        represents a string or not,thus validating the definition
-        of this attribute in the model
+        Test if 'name' attribute is initialized propebly
         """
-        owi = self.value()
-        self.assertEqual(type(owi.name), str)
+        name = "Wissal"
+        amenity_instance = self.ow_v(name=name)
+        self.assertEqual(amenity_instance.name, name)
+
+    def test_name_attri(self):
+        """
+        Test if 'name' attribute is a string
+        """
+        amenity_instance = self.ow_v()
+        self.assertIsInstance(amenity_instance.name, str)
+
+    def test_name_attri_default(self):
+        """
+        Test if 'name' attribute has default value ''
+        """
+        amenity_instance = self.ow_v()
+        self.assertEqual(amenity_instance.name, '')
+
+    def test_to_dict_method(self):
+        """Test the to_dict method if it works fine"""
+        amenity_instance = self.ow_v()
+        amenity_dict = amenity_instance.to_dict()
+        self.assertIsInstance(amenity_dict, dict)
+        self.assertEqual(amenity_dict['__class__'], 'Amenity')
