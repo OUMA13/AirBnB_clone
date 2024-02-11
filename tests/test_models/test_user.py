@@ -98,7 +98,8 @@ class TestUser_instantiation_att(unittest.TestCase):
         self.assertIn("'updated_at': " + dt_ow_repr, us_str)
 
     def test_args_unused(self):
-        """ 
+        """ verify that pass non as an arg to the user
+            cntrctr doesen't affect the object
             """
         us_w = User(None)
         self.assertNotIn(None, us_w.__dict__.values())
