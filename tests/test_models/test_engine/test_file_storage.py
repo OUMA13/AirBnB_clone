@@ -38,12 +38,19 @@ class TestFileStorage_file_with_me(unittest.TestCase):
         self.storage.new(ow_obj1)
         self.storage.new(ow_obj2)
         self.assertEqual(len(self.storage.all()), 2)
+    
+    def test_all(self):
+        self.assertEqual(dict, type(self.storage.all()))
 
     def test_new_method_in_thefile_storage(self):
         """ Testing the new method if it wokrs just fine"""
         ow_obj = BaseModel()
         self.storage.new(ow_obj)
         self.assertIn(ow_obj, self.storage.all().values())
+    
+    def test_new_with_None(self):
+        with self.assertRaises(AttributeError):
+            self.storage.new(None)
 
     def test_save_create_file_exists(self):
         """tests if the file was created with the same name"""
@@ -76,6 +83,8 @@ class TestFileStorage_file_with_me(unittest.TestCase):
         except FileNotFoundError:
             self.assertTrue(False)
 
+    def test_storage_initializes(self):
+        self.assertEqual(type(self.storage), FileStorage)
 
 if __name__ == '__main__':
     unittest.main()
