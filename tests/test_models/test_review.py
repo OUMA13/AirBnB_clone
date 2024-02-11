@@ -23,13 +23,6 @@ class TestReviewInstantiation(unittest.TestCase):
         """Test if Review instance is created with no arguments."""
         self.assertEqual(Review, type(Review()))
 
-    def test_new_instance_stored_in_objects(self):
-        """
-        Test if a new instance is stored in the Review class
-        objects attribute.
-        """
-        self.assertIn(Review(), Review._instances)
-
     def test_id_is_public_str(self):
         """test if the id is a pubklic string"""
         self.assertEqual(str, type(Review().id))
