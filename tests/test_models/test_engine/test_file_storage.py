@@ -61,6 +61,11 @@ class TestFileStorage_file_with_me(unittest.TestCase):
         with self.assertRaises(TypeError):
             self.storage.new(BaseModel(), 1)
 
+    def test_new_method_with_None(self):
+        """ test new method with None argument """
+        with self.assertRaises(AttributeError):
+            self.storage.new(None)
+
     def test_save_create_file_exists(self):
         """tests if the file was created with the same name"""
         self.storage.save()
@@ -92,6 +97,18 @@ class TestFileStorage_file_with_me(unittest.TestCase):
         except FileNotFoundError:
             self.assertTrue(False)
 
+    def test_FileStorage_instantiation_with_arg(self):
+        """Test FileStorage instantiation with an argument"""
+        with self.assertRaises(TypeError):
+            FileStorage(None)
+
+    def test_FileStorage_file_path_is_private_str(self):
+        """Test if file_path is a private string attribute"""
+        self.assertEqual(str, type(FileStorage._FileStorage__file_path))
+
+    def testFileStorage_objects_is_private_dict(self):
+        """Test if __objects is a private dictionary attribute"""
+        self.assertEqual(dict, type(FileStorage._FileStorage__objects))
 
 if __name__ == '__main__':
     unittest.main()
