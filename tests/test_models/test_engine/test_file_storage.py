@@ -31,6 +31,10 @@ class TestFileStorage_file_with_me(unittest.TestCase):
         """test __objects is private attribute"""
         self.assertEqual(dict, type(FileStorage._FileStorage__objects))
 
+    def test_FileStorage_no_args(self):
+        """ test instantiation with no arguments"""
+        self.assertEqual(type(FileStorage()), FileStorage)
+
     def test_all_method_by_adding_storage(self):
         """Test the all method by adding some objects to storage"""
         ow_obj1 = BaseModel()
