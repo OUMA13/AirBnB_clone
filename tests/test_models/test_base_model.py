@@ -120,9 +120,9 @@ class TestBaseModelExtended_ow(unittest.TestCase):
         """This test verifies that attempting to create a BaseModel insc
         with key or value as None in the kwargs dict
         raises a TypeError as expected """
-        new = {None: None}
+        ow = {None: None}
         with self.assertRaises(TypeError):
-            new = BaseModel(**new)
+            new = BaseModel(**ow)
 
     def test_id(self):
         """ test that the id attr of type str """
