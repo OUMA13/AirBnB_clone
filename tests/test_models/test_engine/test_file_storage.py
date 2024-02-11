@@ -18,6 +18,10 @@ class TestFileStorage_file_with_me(unittest.TestCase):
         """Remove the test file after every test"""
         if os.path.exists("file.json"):
             os.remove("file.json")
+    
+    def test_FileStorage_without_arguments(self):
+        """test fileStorage without arguments """
+        self.assertEqual(type(FileStorage()), FileStorage)
 
     def test_all_method_by_adding_storage(self):
         """Test the all method by adding some objects to storage"""
