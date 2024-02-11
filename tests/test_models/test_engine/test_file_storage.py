@@ -31,6 +31,9 @@ class TestFileStorage_file_with_me(unittest.TestCase):
         """test __objects is private attribute"""
         self.assertEqual(dict, type(FileStorage._FileStorage__objects))
 
+    def test_storage_initializes(self):
+        self.assertEqual(type(self.storage), FileStorage)
+
     def test_FileStorage_instantiatio_no_args(self):
         """ test instantiation with no arguments"""
         self.assertEqual(type(FileStorage()), FileStorage)
