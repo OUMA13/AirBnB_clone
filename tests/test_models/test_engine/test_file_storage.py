@@ -48,7 +48,7 @@ class TestFileStorage_file_with_me(unittest.TestCase):
         self.storage.new(ow_obj)
         self.assertIn(ow_obj, self.storage.all().values())
     
-    def test_new_method_witharguments(self):
+    def test_new_with_args(self):
         with self.assertRaises(TypeError):
             self.storage.new(BaseModel(), 1)
 
