@@ -131,25 +131,6 @@ class HBNBCommand(cmd.Cmd):
             objects = storage.all()
             print([str(obj) for obj in objects.values()])
 
-    def do_count(self, arg):
-        """Retrieves the number of instances of a class"""
-        args = arg.split()
-        if len(args) == 0:
-            print("** class name missing **")
-            return
-
-        try:
-            cls = eval(args[0])
-        except NameError:
-            print("** class doesn't exist **")
-            return
-
-        storage = FileStorage()
-        storage.reload()
-        count = sum(1 for obj in storage.all().values()
-                    if isinstance(obj, cls))
-        print(count)
-
     def do_update(self, arg):
         """
         Updates an instance based on the class name and id
