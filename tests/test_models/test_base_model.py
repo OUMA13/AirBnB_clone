@@ -90,10 +90,10 @@ class TestBaseModelExtended_ow(unittest.TestCase):
     def test_kwargs_integer_cnstrctr(self):
         """Test handling of integer keys in kwargs for BaseModel costrct """
         w = BaseModel()
-        paste = w.to_dict()
+        past = w.to_dict()
         past.update({1: 2})
         with self.assertRaises(TypeError):
-            new = BaseModel(**paste)
+            new = BaseModel(**past)
 
     def test_save_json(self):
         """updates the public instance att updated_at """
@@ -120,9 +120,9 @@ class TestBaseModelExtended_ow(unittest.TestCase):
         """This test verifies that attempting to create a BaseModel insc
         with key or value as None in the kwargs dict
         raises a TypeError as expected """
-        ow = {None: None}
+        new = {None: None}
         with self.assertRaises(TypeError):
-            new = BaseModel(**ow)
+            new = BaseModel(**new)
 
     def test_id(self):
         """ test that the id attr of type str """
