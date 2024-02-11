@@ -89,10 +89,10 @@ class TestUser_instantiation_att(unittest.TestCase):
         dt_ow = datetime.today()
         dt_ow_repr = repr(dt_ow)
         us_w = User()
-        us_w.id = "123456"
+        us_w.id = "19902"
         us_w.created_at = us_w.updated_at = dt_ow
         us_str = us_w.__str__()
-        self.assertIn("[User] (123456)", us_str)
+        self.assertIn("[User] (19902)", us_str)
         self.assertIn("'id': '123456'", us_str)
         self.assertIn("'created_at': " + dt_ow_repr, us_str)
         self.assertIn("'updated_at': " + dt_ow_repr, us_str)
@@ -109,8 +109,8 @@ class TestUser_instantiation_att(unittest.TestCase):
 
         dt_ow = datetime.today()
         dt_iso = dt_ow.isoformat()
-        us_w = User(id="345", created_at=dt_iso, updated_at=dt_iso)
-        self.assertEqual(us_w.id, "345")
+        us_w = User(id="152002", created_at=dt_iso, updated_at=dt_iso)
+        self.assertEqual(us_w.id, "152002")
         self.assertEqual(us_w.created_at, dt_ow)
         self.assertEqual(us_w.updated_at, dt_ow)
 
@@ -133,9 +133,9 @@ class TestUser_save_att(unittest.TestCase):
             pass
 
     def tearDown(self):
-        """ Clean up the environment after each test case by removing
+        """   test case by removing
             the "file.json" and renaming "tmp" back to "file.json"
-            (if "tmp" exists)
+            
         """
         try:
             os.remove("file.json")
@@ -156,7 +156,7 @@ class TestUser_save_att(unittest.TestCase):
         self.assertLess(first_updated_at, us_w.updated_at)
 
     def test_B__saves(self):
-        """Ensure that successive calls to the save meth upt
+        """Ensure that succssv  calls to the save meth upt
         the updated_at att  of a User objt"""
         us_w = User()
         sleep(0.05)
