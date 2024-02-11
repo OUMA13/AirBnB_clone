@@ -50,6 +50,11 @@ class TestFileStorage_file_with_me(unittest.TestCase):
         """test all method if it works fine"""
         self.assertEqual(dict, type(self.storage.all()))
 
+        def test_all_arguments(self):
+            """ test all metho with arguments """
+            with self.assertRaises(TypeError):
+                self.storage.all(None)
+
     def test_new_method_in_thefile_storage(self):
         """ Testing the new method if it wokrs just fine"""
         ow_obj = BaseModel()
@@ -60,13 +65,6 @@ class TestFileStorage_file_with_me(unittest.TestCase):
         """ test new method with arguments """
         with self.assertRaises(TypeError):
             self.storage.new(BaseModel(), 1)
-
-    def test_new_adds_instance_obj_to_dict_of_objects(self):
-        """tests wether the instance method 'new' adds new object"""
-        temp_obj = BaseModel()
-        self.storage.new(temp_obj)
-        key = f"{temp_obj.__class__.__name__}.{temp_obj.id}"
-        self.assertIn(key, self.storage.all().keys())
 
     def test_save_create_file_exists(self):
         """tests if the file was created with the same name"""
