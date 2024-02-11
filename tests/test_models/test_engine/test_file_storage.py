@@ -22,18 +22,14 @@ class TestFileStorage_file_with_me(unittest.TestCase):
     def test_FileStorage_without_arguments(self):
         """test fileStorage without arguments """
         self.assertEqual(type(FileStorage()), FileStorage)
-
-    def test_FileStorage_is_file_path_astring(self):
-        """ test file storage is file path file_path is a string """
+    
+    def test_FileStorage_file_path_is_private_str(self):
+        """ test file_path"""
         self.assertEqual(str, type(FileStorage._FileStorage__file_path))
 
-    def test_FileStorage_is_object_adic(self):
-        """test __objects is private attribute"""
+    def testFileStorage_objects_is_private_dict(self):
+        """test __objects"""
         self.assertEqual(dict, type(FileStorage._FileStorage__objects))
-
-    def test_FileStorage_no_args(self):
-        """ test instantiation with no arguments"""
-        self.assertEqual(type(FileStorage()), FileStorage)
 
     def test_all_method_by_adding_storage(self):
         """Test the all method by adding some objects to storage"""
@@ -42,7 +38,7 @@ class TestFileStorage_file_with_me(unittest.TestCase):
         self.storage.new(ow_obj1)
         self.storage.new(ow_obj2)
         self.assertEqual(len(self.storage.all()), 2)
-
+    
     def test_all_method(self):
         """test all method if it works fine"""
         self.assertEqual(dict, type(self.storage.all()))
@@ -52,7 +48,7 @@ class TestFileStorage_file_with_me(unittest.TestCase):
         ow_obj = BaseModel()
         self.storage.new(ow_obj)
         self.assertIn(ow_obj, self.storage.all().values())
-
+    
     def test_new_method_witharguments(self):
         """ test new method with arguments """
         with self.assertRaises(TypeError):
@@ -89,6 +85,8 @@ class TestFileStorage_file_with_me(unittest.TestCase):
         except FileNotFoundError:
             self.assertTrue(False)
 
+    def test_storage_initializes(self):
+        self.assertEqual(type(self.storage), FileStorage)
 
 if __name__ == '__main__':
     unittest.main()
