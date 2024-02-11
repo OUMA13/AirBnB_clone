@@ -39,8 +39,7 @@ class TestFileStorage_file_with_me(unittest.TestCase):
         self.storage.new(ow_obj2)
         self.assertEqual(len(self.storage.all()), 2)
     
-    def test_all_method(self):
-        """test all method if it works fine"""
+    def test_all(self):
         self.assertEqual(dict, type(self.storage.all()))
 
     def test_new_method_in_thefile_storage(self):
@@ -50,7 +49,6 @@ class TestFileStorage_file_with_me(unittest.TestCase):
         self.assertIn(ow_obj, self.storage.all().values())
     
     def test_new_method_witharguments(self):
-        """ test new method with arguments """
         with self.assertRaises(TypeError):
             self.storage.new(BaseModel(), 1)
 
