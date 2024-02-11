@@ -18,7 +18,7 @@ class TestFileStorage_file_with_me(unittest.TestCase):
         """Remove the test file after every test"""
         if os.path.exists("file.json"):
             os.remove("file.json")
-    
+
     def test_FileStorage_without_arguments(self):
         """test fileStorage without arguments """
         self.assertEqual(type(FileStorage()), FileStorage)
@@ -51,7 +51,12 @@ class TestFileStorage_file_with_me(unittest.TestCase):
         self.storage.save()
         self.assertTrue(os.path.exists(self.storage._FileStorage__file_path))
 
-    def test_reaload_without_file_exist(self):
+    def test_reload_witharguments(self):
+        """test the reload method with arguments"""
+        with self.assertRaises(TypeError):
+            self.storage.reload(None)
+
+    def test_reload_without_file_exist(self):
         """
             Test what would happen if file.json does not exists
             and is reloaded
