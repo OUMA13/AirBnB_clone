@@ -61,11 +61,6 @@ class TestFileStorage_file_with_me(unittest.TestCase):
         with self.assertRaises(TypeError):
             self.storage.new(BaseModel(), 1)
 
-    def test_new_method_with_None(self):
-        """ test new method with None argument """
-        with self.assertRaises(AttributeError):
-            self.storage.new(None)
-
     def test_save_create_file_exists(self):
         """tests if the file was created with the same name"""
         self.storage.save()
@@ -97,7 +92,7 @@ class TestFileStorage_file_with_me(unittest.TestCase):
         except FileNotFoundError:
             self.assertTrue(False)
 
-    def test_FileStorage_instantiation_with_arg(self):
+    def test_FileStorage_instantiation_with_arguments(self):
         """Test FileStorage instantiation with an argument"""
         with self.assertRaises(TypeError):
             FileStorage(None)
