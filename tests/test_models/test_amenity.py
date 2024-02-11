@@ -44,3 +44,11 @@ class Test_Amenity_with_me(unittest.TestCase):
         amenity_dict = amenity_instance.to_dict()
         self.assertIsInstance(amenity_dict, dict)
         self.assertEqual(amenity_dict['__class__'], 'Amenity')
+
+    def test_without__arguments_inis(self):
+        """ test without arguments initialize"""
+        self.assertEqual(self.ow_v, type(self.ow_v()))
+
+
+if __name__ == '__main__':
+    unittest.main()

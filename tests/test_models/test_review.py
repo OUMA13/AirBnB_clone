@@ -43,13 +43,5 @@ class TestReviewInstantiation(unittest.TestCase):
         self.assertNotIn("place_id", rev_ow.__dict__)
 
 
-class TestReviewSave(unittest.TestCase):
-    """Unittests for testing save method of the Review class."""
-
-
-class TestReviewToDict(unittest.TestCase):
-    """Unittests for testing to_dict method of the Review class."""
-
-
 if __name__ == "__main__":
     unittest.main()
