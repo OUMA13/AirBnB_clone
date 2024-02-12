@@ -2,7 +2,7 @@
 ![Project Logo](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20240210%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240210T000431Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=ff4595f0326ac16d4b94ff6a7833dad8f7b6e498b41e639b94ccb61bfbd13920)
 
 
-## Introduction
+## 
 This project is part of my journey to becoming a software engineer. The goal is to build a clone of the AirBnB, implementing features step by step. The project consists of a command interpreter to manipulate data without a visual interface, a website with static and dynamic functionalities, a database or files that store data, and an API for communication between the front and backend.
 
 ## Console
