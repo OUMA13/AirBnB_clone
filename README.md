@@ -3,7 +3,7 @@
 
 
 ## Introduction
-
+This project is part of my journey to becoming a software engineer. The goal is to build a clone of the AirBnB, implementing features step by step. The project consists of a command interpreter to manipulate data without a visual interface, a website with static and dynamic functionalities, a database or files that store data, and an API for communication between the front and backend.
 
 ## Console
 The console, or command interpreter, is the tool for creating, updating, destroying, storing, and persisting objects to a JSON file. It serves as a validation tool for the storage engine.
