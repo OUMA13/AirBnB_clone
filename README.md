@@ -37,4 +37,4 @@ One of the challenges encountered was with importing modules, especially the mod
 ## Authors
 
 *Wissal Leknouch
-*Oumaima El-khanchoufi
+* El-khanchoufi
