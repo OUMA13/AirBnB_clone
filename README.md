@@ -16,7 +16,7 @@ The HolbertonBnB console supports the following commands:
 - all: Prints string representations of all instances based on the class name.
 - update: Updates an instance based on the class name and ID.
 
-## BaseModel Class
+##
 The BaseModel class serves as the parent class for other classes and defines common attributes and methods. It includes methods for initialization, saving, converting to a dictionary, and providing a string representation of instances.
 
 ## File Storage
