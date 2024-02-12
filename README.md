@@ -8,7 +8,7 @@ This project is part of my journey to becoming a software engineer. The goal is 
 ## Console
 The console, or command interpreter, is the tool for creating, updating, destroying, storing, and persisting objects to a JSON file. It serves as a validation tool for the storage engine.
 
-### Console Commande 
+###  Commande 
 The HolbertonBnB console supports the following commands:
 - create: Creates a new instance of BaseModel.
 - show: Prints the string representation of an instance based on the class name and ID.
