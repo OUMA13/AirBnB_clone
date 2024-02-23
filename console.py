@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" this Module is for definning the HBNB Console """
+""" """
 import cmd
 import json
 from models.engine.file_storage import FileStorage
